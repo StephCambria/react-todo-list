@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 import TodoForm from "./TodoForm";
-import TodoList from "./TodoList";
 import { RiCloseCircleLine } from "react-icons/ri";
 import { TiEdit } from "react-icons/ti";
 
 function Todo({ todos, completeTodo, removeTodo, updateTodo }) {
+  // Passing in functionality
+  // ====================================================
+  // Setting the initial state
   const [edit, setEdit] = useState({
     id: null,
     value: "",
   });
+  // ====================================================
 
+  // ====================================================
+  // Update functionality
   const submitUpdate = (value) => {
     updateTodo(edit.id, value);
     setEdit({
@@ -17,10 +22,13 @@ function Todo({ todos, completeTodo, removeTodo, updateTodo }) {
       value: "",
     });
   };
+
   if (edit.id) {
     return <TodoForm edit={edit} onSubmit={submitUpdate} />;
   }
+  // ====================================================
 
+  // Returning the Todo List via the map function
   return todos.map((todo, index) => (
     <div
       className={todo.isComplete ? "todo-row complete" : "todo-row"}

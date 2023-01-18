@@ -3,7 +3,13 @@ import TodoForm from "./TodoForm";
 import Todo from "./Todo";
 
 export const TodoList = () => {
+  // ====================================================
+  // Setting the initial state
   const [todos, setTodos] = useState([]);
+  // ====================================================
+
+  // ====================================================
+  // Add Todo functionality
   const addTodo = (todo) => {
     if (!todo.text || /^\s*$/.test(todo.text)) {
       return;
@@ -12,7 +18,10 @@ export const TodoList = () => {
     setTodos(newTodos);
     console.log(...todos);
   };
+  // ====================================================
 
+  // ====================================================
+  // Update Todo functionality
   const updateTodo = (todoId, newValue) => {
     if (!newValue.text || /^\s*$/.test(newValue.text)) {
       return;
@@ -21,11 +30,15 @@ export const TodoList = () => {
       prev.map((item) => (item.id === todoId ? newValue : item))
     );
   };
+  // ====================================================
 
+  // ====================================================
+  // Remove Todo functionality
   const removeTodo = (id) => {
-    const removeArr = [...todos].filter((todo) => todo.id !== id);
+    const removeArr = [...todos].filter((todo) => todo.id !== id); // Filtering through Todo array via ID
     setTodos(removeArr);
   };
+  // ====================================================
 
   const completeTodo = (id) => {
     let updatedTodos = todos.map((todo) => {
